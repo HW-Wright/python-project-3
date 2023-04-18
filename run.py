@@ -16,14 +16,19 @@ def get_income():
     """
     Get take home income for this month from user.
     """
-    print("How much were you paid after tax this month?\n")
+    print("How much were you paid after tax this month?")
+    print("Please enter an integer below:\n")
 
-    income = int(input("Enter figure here:\n"))
+    while True:
+        try:
+            income = int(input("Enter figure here:\n"))
+            break
+        except ValueError:
+            print("Data must be entered as an integer.\n")
 
-    if validate_income(income):
-        print("Thank you.\n")
-    
     return income
+
+    
 
 
 # def get_living_costs():
@@ -33,7 +38,8 @@ def get_income():
 #     separated by a comma
 #     """
 #     print("Please enter living costs for this month.\n")
-#     print("In order of: Rent->Energy->Groceries->Council Tax\nEmter data as integers separated by a comma")
+#     print("In order of: Rent->Energy->Groceries->Council 
+#     Tax\nEmter data as integers separated by a comma")
     
 #     living_costs = input("Enter figures here:\n")
 
@@ -44,28 +50,17 @@ def get_income():
 #     return living_costs
 
 
-def validate_income(value):
-    """
-    Ensure income data is provided as integers, 
-    provide error if invalid.
-    """
-    if isinstance(value, int):
-        return True
-
-
 # def validate_living(value):
 #     """
 #     Convert data into integers
 #     """
     
-
-
 def update_budget(data, worksheet):
     """
     Used to update the spreadsheet with input data
     from user, in all cases.
     """
-    print(f"Updating {worksheet} budget...\n")
+    print(f"Updating {worksheet} sheet...\n")
     data = [data]
     updating = SHEET.worksheet(worksheet)
     updating.append_row(data)
