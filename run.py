@@ -16,8 +16,8 @@ def get_income():
     """
     Get take home income for this month from user.
     """
-    print("How much were you paid after tax this month?")
-    print("Please enter an integer below:\n")
+    print("Please enter an integer below:")
+    print("How much were you paid after tax this month?\n")
 
     while True:
         try:
@@ -28,32 +28,42 @@ def get_income():
 
     return income
 
+
+def get_living_costs():
+    """
+    Get the total living costs (rent, energy,
+    groceries and council tax) as a series of integers
+    separated by a comma.
+    """
+    print("Please enter living costs for this month.\n")
+    print("In order of: Rent -> Energy -> Groceries - >Council Tax\nEnter data as integers separated by a comma")
     
+    costs_str = input("Enter figures here:\n")
+
+    str_list = costs_str.split(",")
+
+    living_costs = [int(i) for i in str_list]
+
+    if validate_living(living_costs):
+        print("Thank you.")
+
+    return living_costs
 
 
-# def get_living_costs():
-#     """
-#     Get the total living costs (rent, energy,
-#     groceries and council tax) as a series of integers
-#     separated by a comma
-#     """
-#     print("Please enter living costs for this month.\n")
-#     print("In order of: Rent->Energy->Groceries->Council 
-#     Tax\nEmter data as integers separated by a comma")
-    
-#     living_costs = input("Enter figures here:\n")
+def validate_living(values):
+    """
+    Convert living costs data into integers.
+    """
+    try:
+        if len(values) != 4:
+            raise ValueError(f"Please enter 4 values, not {len(values)}.\n")
+    except ValueError:
+        print("Invalid data. Please enter again.")
+        return False
 
-#     if validate_living(living_costs):
-#         print("Thank you")
-#         break
-
-#     return living_costs
+    return True
 
 
-# def validate_living(value):
-#     """
-#     Convert data into integers
-#     """
     
 def update_budget(data, worksheet):
     """
@@ -73,8 +83,8 @@ def run_functions():
     """
     income = get_income()
     update_budget(income, "Income")
-    # living_costs = get_living_costs()
-    # update_budget(living_costs, "Living")
+    living_costs = get_living_costs()
+    update_budget(living_costs, "Living")
 
 
 run_functions()
