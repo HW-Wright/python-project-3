@@ -26,7 +26,7 @@ def get_income():
         except ValueError:
             print("Data must be entered as an integer.\n")
 
-    return income
+    return [income]
 
 
 def get_living_costs():
@@ -35,19 +35,20 @@ def get_living_costs():
     groceries and council tax) as a series of integers
     separated by a comma.
     """
-    print("Please enter living costs for this month.\n")
     print("In order of: Rent -> Energy -> Groceries - >Council Tax\nEnter data as integers separated by a comma")
+    print("Please enter living costs for this month.\n")
     
-    costs_str = input("Enter figures here:\n")
+    living_str = input("Enter figures here:\n")
 
-    str_list = costs_str.split(",")
+    cost_str = living_str.split(",")
 
-    living_costs = [int(i) for i in str_list]
+    living_costs = [int(i) for i in cost_str]
 
     if validate_living(living_costs):
-        print("Thank you.")
-
-    return living_costs
+        return living_costs
+    else:
+        get_living_costs()
+       
 
 
 def validate_living(values):
@@ -57,8 +58,8 @@ def validate_living(values):
     try:
         if len(values) != 4:
             raise ValueError(f"Please enter 4 values, not {len(values)}.\n")
-    except ValueError:
-        print("Invalid data. Please enter again.")
+    except ValueError as err:
+        print(f"Invalid data. {err}\n")
         return False
 
     return True
@@ -71,7 +72,6 @@ def update_budget(data, worksheet):
     from user, in all cases.
     """
     print(f"Updating {worksheet} sheet...\n")
-    data = [data]
     updating = SHEET.worksheet(worksheet)
     updating.append_row(data)
     print("Updated.\n")
