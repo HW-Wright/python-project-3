@@ -22,12 +22,14 @@ def get_income():
     while True:
         try:
             income = int(input("Enter figure here:\n"))
-            print("Thank you.")
+            print("Thank you.\n")
             break
         except ValueError:
             print("Data must be entered as an integer.\n")
 
+    print([income])
     return [income]
+    
 
 
 def get_living_costs():
@@ -38,24 +40,31 @@ def get_living_costs():
     """
     print("In order of: Rent -> Energy -> Groceries ->Council Tax\nEnter data as integers separated by a comma")
     print("Please enter living costs for this month.\n")
-    
-    living_str = input("Enter figures here:\n")
+    while True:
+        living_str = input("Enter figures here:\n")
+        print("Thank you.\n")
+        
+        cost_str = living_str.split(",")
 
-    cost_str = living_str.split(",")
+        living_costs = [int(i) for i in cost_str]
 
-    living_costs = [int(i) for i in cost_str]
+        if validate_living(living_costs):
+            print("Thank you.\n")
+            break
+        else:
+            get_living_costs()
 
-    if validate_living(living_costs):
-        print("Thank you.")
-    else:
-        get_living_costs()
+    total = sum(living_costs)
+
+    living_costs.append(total)
 
     return living_costs
+    
 
 
 def validate_living(values):
     """
-    Convert living costs data into integers.
+    Ensure living cost data is presented as 4 separate integers.
     """
     try:
         if len(values) != 4:
@@ -86,7 +95,25 @@ def get_secondary_costs():
     else:
         get_secondary_costs()
 
+    total = sum(secondary_costs)
+
+    secondary_costs.append(total)
+
     return secondary_costs
+
+
+def validate_secondary(values):
+    """
+    Ensure secondary cost data is presented as 3 separate integers. 
+    """
+    try:
+        if len(values) != 3:
+            raise ValueError(f"Please enter 3 values, not {len(values)}.\n")
+    except ValueError as err:
+        print(f"Invalid data. {err}\n")
+        return False
+
+    return True
 
     
 def update_budget(data, worksheet):
@@ -108,7 +135,7 @@ def run_functions():
     update_budget(income, "Income")
     living_costs = get_living_costs()
     update_budget(living_costs, "Living")
-    secondary_costs = get_living_costs()
+    secondary_costs = get_secondary_costs()
     update_budget(secondary_costs, "Secondary")
 
 
