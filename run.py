@@ -127,16 +127,41 @@ def update_budget(data, worksheet):
     print("Updated.\n")
 
 
+def show_spending_change():
+    """
+    Retrive previous month's total, calulate spending difference 
+    as a percentage.
+    """
+    print("calulating change in spending...\n")
+
+    living = SHEET.worksheet("Living")
+    # secondary = SHEET.worksheet("Secondary")
+
+    l_total = []
+    for i in range(4, 4):
+        data = living.col_values(i)
+        l_total.append(data[-1:])
+        
+    print(l_total)
+
+    # s_total = []
+
+
+
+    # print(f"This month your spending difference was {change}% compared to last month")
+
+
 def run_functions():
     """
     Function to run all other functions.
     """
-    income = get_income()
-    update_budget(income, "Income")
-    living_costs = get_living_costs()
-    update_budget(living_costs, "Living")
-    secondary_costs = get_secondary_costs()
-    update_budget(secondary_costs, "Secondary")
+    # income = get_income()
+    # update_budget(income, "Income")
+    # living_costs = get_living_costs()
+    # update_budget(living_costs, "Living")
+    # secondary_costs = get_secondary_costs()
+    # update_budget(secondary_costs, "Secondary")
+    show_spending_change()
 
 
 run_functions()
