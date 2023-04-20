@@ -14,7 +14,7 @@ SHEET = GSPREAD_CLIENT.open('monthly-budget')
 
 def get_income():
     """
-    Get take home income for this month from user.
+    Get income for this month from user and ensure data is an integer.
     """
     print("Please enter an integer below:")
     print("How much were you paid after tax this month?\n")
@@ -22,6 +22,7 @@ def get_income():
     while True:
         try:
             income = int(input("Enter figure here:\n"))
+            print("Thank you.")
             break
         except ValueError:
             print("Data must be entered as an integer.\n")
@@ -35,7 +36,7 @@ def get_living_costs():
     groceries and council tax) as a series of integers
     separated by a comma.
     """
-    print("In order of: Rent -> Energy -> Groceries - >Council Tax\nEnter data as integers separated by a comma")
+    print("In order of: Rent -> Energy -> Groceries ->Council Tax\nEnter data as integers separated by a comma")
     print("Please enter living costs for this month.\n")
     
     living_str = input("Enter figures here:\n")
@@ -45,10 +46,11 @@ def get_living_costs():
     living_costs = [int(i) for i in cost_str]
 
     if validate_living(living_costs):
-        return living_costs
+        print("Thank you.")
     else:
         get_living_costs()
-       
+
+    return living_costs
 
 
 def validate_living(values):
@@ -64,6 +66,27 @@ def validate_living(values):
 
     return True
 
+
+def get_secondary_costs():
+    """
+    Get the total secondary costs (Car paymnets, entertainment, social)
+    as a series of integers sepparated by a comma.
+    """
+    print("In order of: Car Payments -> Entertainment -> Social\nEnter data as integers separated by a comma")
+    print("Please enter living costs for this month.\n")
+
+    secondary_str = input("Enter figures here:\n")
+
+    sec_str = secondary_str.split(",")
+
+    secondary_costs = [int(i) for i in sec_str]
+
+    if validate_secondary(secondary_costs):
+        print("Thank You.")
+    else:
+        get_secondary_costs()
+
+    return secondary_costs
 
     
 def update_budget(data, worksheet):
@@ -85,6 +108,8 @@ def run_functions():
     update_budget(income, "Income")
     living_costs = get_living_costs()
     update_budget(living_costs, "Living")
+    secondary_costs = get_living_costs()
+    update_budget(secondary_costs, "Secondary")
 
 
 run_functions()
