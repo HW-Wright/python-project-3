@@ -27,93 +27,82 @@ def get_income():
         except ValueError:
             print("Data must be entered as an integer.\n")
 
-    print([income])
     return [income]
-    
 
+
+
+def get_cost_entry(cost_item_name):
+    """Get use input for a given cost item.
+
+    Args:
+        cost_item_name: str
+
+    Returns:
+        int: The user's response as an integer.
+    """
+
+    while True:
+        user_input = input(
+            f"How much did you spend on {cost_item_name.lower()}?\n"
+        ).strip()
+
+        if not user_input.isdigit():
+            print("Please enter a number.")
+            continue
+        else:
+            return int(user_input)
 
 def get_living_costs():
     """
-    Get the total living costs (rent, energy,
-    groceries and council tax) as a series of integers
-    separated by a comma.
+    Ask the user for their living costs and return them in a list.
+    Returns:
+        list of int: a list of numbers corresponding to each living cost.
+            The total is also appended to the end of the list.
     """
-    print("In order of: Rent -> Energy -> Groceries ->Council Tax\nEnter data as integers separated by a comma")
-    print("Please enter living costs for this month.\n")
-    while True:
-        living_str = input("Enter figures here:\n")
-        print("Thank you.\n")
-        
-        cost_str = living_str.split(",")
+    COST_ITEM_NAMES = [
+        'rent',
+        'energy',
+        'groceries',
+        'council tax',
+    ] 
 
-        living_costs = [int(i) for i in cost_str]
+    print("\nPlease enter each living cost below as an integer.\n")
 
-        if validate_living(living_costs):
-            print("Thank you.\n")
-            break
-        else:
-            get_living_costs()
+    living_costs = []
+    for cost_item_name in COST_ITEM_NAMES:
+        living_costs.append(
+            get_cost_entry(cost_item_name)
+        )
 
-    total = sum(living_costs)
-
-    living_costs.append(total)
+    living_costs.append(sum(living_costs))
 
     return living_costs
-    
-
-
-def validate_living(values):
-    """
-    Ensure living cost data is presented as 4 separate integers.
-    """
-    try:
-        if len(values) != 4:
-            raise ValueError(f"Please enter 4 values, not {len(values)}.\n")
-    except ValueError as err:
-        print(f"Invalid data. {err}\n")
-        return False
-
-    return True
-
 
 def get_secondary_costs():
     """
-    Get the total secondary costs (Car paymnets, entertainment, social)
-    as a series of integers sepparated by a comma.
+    Ask the user for their secondary costs and return them in a list.
+    Returns:
+        list of int: a list of numbers corresponding to each cost.
+            The total is also appended to the end of the list.
     """
-    print("In order of: Car Payments -> Entertainment -> Social\nEnter data as integers separated by a comma")
-    print("Please enter living costs for this month.\n")
+    COST_ITEM_NAMES = [
+        'car payments',
+        'entertainment',
+        'social costs',
+    ] 
 
-    secondary_str = input("Enter figures here:\n")
+    print("\nPlease enter each secondary cost below as an integer.\n")
 
-    sec_str = secondary_str.split(",")
+    secondary_costs = []
+    for cost_item_name in COST_ITEM_NAMES:
+        secondary_costs.append(
+            get_cost_entry(cost_item_name)
+        )
 
-    secondary_costs = [int(i) for i in sec_str]
-
-    if validate_secondary(secondary_costs):
-        print("Thank You.")
-    else:
-        get_secondary_costs()
-
-    total = sum(secondary_costs)
-
-    secondary_costs.append(total)
+    secondary_costs.append(sum(secondary_costs))
 
     return secondary_costs
 
-
-def validate_secondary(values):
-    """
-    Ensure secondary cost data is presented as 3 separate integers. 
-    """
-    try:
-        if len(values) != 3:
-            raise ValueError(f"Please enter 3 values, not {len(values)}.\n")
-    except ValueError as err:
-        print(f"Invalid data. {err}\n")
-        return False
-
-    return True
 
     
 def update_budget(data, worksheet):
@@ -132,7 +121,7 @@ def show_spending_change():
     Retrive previous month's total, calulate spending difference 
     as a percentage.
     """
-    print("calulating change in spending...\n")
+    print("Calulating change in spending...\n")
 
     living = SHEET.worksheet("Living")
     # secondary = SHEET.worksheet("Secondary")
@@ -155,13 +144,14 @@ def run_functions():
     """
     Function to run all other functions.
     """
-    # income = get_income()
-    # update_budget(income, "Income")
-    # living_costs = get_living_costs()
-    # update_budget(living_costs, "Living")
-    # secondary_costs = get_secondary_costs()
-    # update_budget(secondary_costs, "Secondary")
-    show_spending_change()
+    income = get_income()
+    update_budget(income, "Income")
+    living_costs = get_living_costs()
+    update_budget(living_costs, "Living")
+    secondary_costs = get_secondary_costs()
+    update_budget(secondary_costs, "Secondary")
+    # show_spending_change()
+
 
 
 run_functions()
