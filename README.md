@@ -1,31 +1,23 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# Python Monthly Budget
+My third portfolio project uses Python code from the run.py file to read, retrive and update data in a Google Sheet. The primary purpose of the project is to both maintain a historical record of the user's spending in various areas, and present the user with an accurate change in spending from the previous month, in the form of a percentage. The program will have obvious use for the majority of people.
 
-Welcome blahblahblah589,
+[Please view the live project here!]()
 
-This is the Code Institute student template for deploying your third portfolio project, the Python command-line project. The last update to this file was: **August 17, 2021**
+## User Experience (UX)
+### User Stories
+----------------------------
+#### First Time User Goals
+- As a first time user, I want to easily understand the purpose of the program.
+- As a first time user, I want to easily understand how to use the program.
+#### Returning User Goals
+- As a returning user, I want to be able to use the program with ease and understand what data I am going to receive from it.
+#### Frequent User Goals
+- As a frequent visitor, I want to use the program to better understand my spending habbits and make any changes that I feel are necessary. 
 
-## Reminders
+### Features
+----------------------------
+#### Existing Features
+##### User Inputs
+##### Custom Error Messages
+##### Change in Spending Data
 
-* Your code must be placed in the `run.py` file
-* Your dependencies must be placed in the `requirements.txt` file
-* Do not edit any of the other files or your code may not deploy properly
-
-## Creating the Heroku app
-
-When you create the app, you will need to add two buildpacks from the _Settings_ tab. The ordering is as follows:
-
-1. `heroku/python`
-2. `heroku/nodejs`
-
-You must then create a _Config Var_ called `PORT`. Set this to `8000`
-
-If you have credentials, such as in the Love Sandwiches project, you must create another _Config Var_ called `CREDS` and paste the JSON into the value field.
-
-Connect your GitHub repository and deploy as normal.
-
-## Constraints
-
-The deployment terminal is set to 80 columns by 24 rows. That means that each line of text needs to be 80 characters or less otherwise it will be wrapped onto a second line.
-
------
-Happy coding!
