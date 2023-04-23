@@ -3,6 +3,8 @@ My third portfolio project uses Python code from the run.py file to read, retriv
 
 [Please view the live project here!](https://python-project-3.herokuapp.com/)
 
+[Please find the Google Sheet here:](https://docs.google.com/spreadsheets/d/1H_ye3MRzxCeTJMHI1Xxri35Bqf9PdojsFB4kVQnV9h8/edit#gid=438650178)
+
 ![Deployed Webb App](/documentation/deployed-project.png)
 
 ## User Experience (UX)
