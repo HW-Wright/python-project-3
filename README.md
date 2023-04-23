@@ -1,7 +1,9 @@
 # Python Monthly Budget
 My third portfolio project uses Python code from the run.py file to read, retrive and update data in a Google Sheet. The primary purpose of the project is to both maintain a historical record of the user's spending in various areas, and present the user with an accurate change in spending from the previous month, in the form of a percentage. The program will have obvious use for the majority of people.
 
-[Please view the live project here!]()
+[Please view the live project here!](https://python-project-3.herokuapp.com/)
+
+![Deployed Webb App](/documentation/deployed-project.png)
 
 ## User Experience (UX)
 ### User Stories
@@ -30,18 +32,37 @@ My third portfolio project uses Python code from the run.py file to read, retriv
 
 ### Testing
 ----------------------------
-
+- The app has been tested rigerously in the gitpod terminal, and in it's deployed form on Heroku.
+![Testing in terminal](/documentation/testing-1.png)
+![Testing in terminal](/documentation/testing-2.png)
+![Testing in terminal](/documentation/testing-3.png)
+![Testing criteria](/documentation/testing-4.png)
 ### UX
 ----------------------------
+- It was important to the project, that the limited control I had over the design of the deployed app, was made to be as clean and polished as possible. As a result, the inputs and print statements that make up the UX of the app are all evenly separated, with the living cost group and the secondary cost group of inputs remaining together.
 
 ### Validators
 ----------------------------
+- The run.py file was put through a validator, please see below:
+![Code validation](/documentation/code-validation.png)
 
 ### Technologies Used
 ----------------------------
+- Python
+- Google Sheets
+- Google Webb API's
+- Heroku
 
 ### Deployment
 ----------------------------
+- Using Heroku, the webb app was deployed via GitHub.
+![Heroku Deployment](/documentation/heroku-deployment.png)
+- Below are the config vars used:
+![Heroku Config Vars](/documentation/config-vars)
+- Below are the buildpacks necessary to create the webb app:
+[Heroku Buildpacks](/documentation/buildpacks)
 
 ### Credits
 ----------------------------
+- Update_budget function: The basic code structure is borrowed from the Love Sandwiches walkthrough project.
+- I would like to acknowledge Brian Macharia, my Code Institue mentor. The student support systems at Code Institute.
