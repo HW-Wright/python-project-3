@@ -25,4 +25,23 @@ My third portfolio project uses Python code from the run.py file to read, retriv
 - If the user was to enter data the program consider's invalid (such as an input that is not an integer), the program will present custom error messages. These messages will inform the user of the error and repeat the initial input until the data is valid.
 ##### Change in Spending Data
 - The totals for the recently entered data is check against the total for the previous month's data, at which point the difference in pound sterling and percentage change is presented to the user. Thi sis done for both living costs and secondary costs. The user will also be presented a value representing the leftover income for the current month, and how this differs from last month.
+#### Features to be Added
+- In the future I would like to add a feature whereby users can edit previous entires within the program. This would be a useful feature for combating human error.
 
+### Testing
+----------------------------
+
+### UX
+----------------------------
+
+### Validators
+----------------------------
+
+### Technologies Used
+----------------------------
+
+### Deployment
+----------------------------
+
+### Credits
+----------------------------
