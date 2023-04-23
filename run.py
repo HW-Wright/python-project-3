@@ -74,6 +74,9 @@ def get_living_costs():
             get_cost_entry(cost_item_name)
         )
 
+    global L_TOTAL
+    L_TOTAL = sum(living_costs)
+
     living_costs.append(sum(living_costs))
 
     return living_costs
@@ -99,6 +102,9 @@ def get_secondary_costs():
             get_cost_entry(cost_item_name)
         )
 
+    global S_TOTAL
+    S_TOTAL = sum(secondary_costs)
+
     secondary_costs.append(sum(secondary_costs))
 
     return secondary_costs
@@ -123,15 +129,16 @@ def show_spending_change():
     """
     print("Calulating change in spending...\n")
 
-    living = SHEET.worksheet("Living")
-    # secondary = SHEET.worksheet("Secondary")
+    living = SHEET.worksheet("Living").get_all_values()
+    living_row = living[-2]
+    print(living_row)
 
-    l_total = []
-    for i in range(4, 4):
-        data = living.col_values(i)
-        l_total.append(data[-1:])
+    # l_total = []
+    # for i in range(4, 4):
+    #     data = living.col_values(i)
+    #     l_total.append(data[-1:])
         
-    print(l_total)
+    # print(l_total)
 
     # s_total = []
 
@@ -140,18 +147,18 @@ def show_spending_change():
     # print(f"This month your spending difference was {change}% compared to last month")
 
 
-def run_functions():
+def main():
     """
     Function to run all other functions.
     """
-    income = get_income()
-    update_budget(income, "Income")
+    # income = get_income()
+    # update_budget(income, "Income")
     living_costs = get_living_costs()
     update_budget(living_costs, "Living")
-    secondary_costs = get_secondary_costs()
-    update_budget(secondary_costs, "Secondary")
-    # show_spending_change()
+    # secondary_costs = get_secondary_costs()
+    # update_budget(secondary_costs, "Secondary")
+    show_spending_change()
+    
 
 
-
-run_functions()
+main()
