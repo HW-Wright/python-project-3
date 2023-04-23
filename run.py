@@ -16,16 +16,15 @@ def get_income():
     """
     Get income for this month from user and ensure data is an integer.
     """
-    print("Please enter an integer below:")
+    print("\nPlease enter an integer below:\n")
     print("How much were you paid after tax this month?\n")
 
     while True:
         try:
             income = int(input("Enter figure here:\n"))
-            print("Thank you.\n")
             break
         except ValueError:
-            print("Data must be entered as an integer.\n")
+            print("\nData must be entered as an integer.\n")
 
     return [income]
 
@@ -116,48 +115,56 @@ def update_budget(data, worksheet):
     Used to update the spreadsheet with input data
     from user, in all cases.
     """
-    print(f"Updating {worksheet} sheet...\n")
+    print(f"\nUpdating {worksheet} sheet...\n")
     updating = SHEET.worksheet(worksheet)
     updating.append_row(data)
     print("Updated.\n")
 
 
-def show_spending_change():
+def living_spending_change():
     """
     Retrive previous month's total, calulate spending difference 
     as a percentage.
     """
-    print("Calulating change in spending...\n")
+    print("\nCalulating change in spending...\n")
 
     living = SHEET.worksheet("Living").get_all_values()
     living_row = living[-2]
-    print(living_row)
+    
+    previous_living_total = int(living_row.pop(-1))
 
-    # l_total = []
-    # for i in range(4, 4):
-    #     data = living.col_values(i)
-    #     l_total.append(data[-1:])
-        
-    # print(l_total)
+    l_spend_change = previous_living_total - int(L_TOTAL)
+    l_percentage_change = l_spend_change / previous_living_total * 100
+    l_percentage_change_two = round(l_percentage_change, 2)
 
-    # s_total = []
+    print(f"This month, your change in living costs was £{l_spend_change}.\n")
+    print(f"That is a change of {l_percentage_change_two}%.\n")
 
+    secondary = SHEET.worksheet("Secondary").get_all_values()
+    secondary_row = secondary[-2]
 
+    previous_secondary_total = int(secondary_row.pop(-1))
 
-    # print(f"This month your spending difference was {change}% compared to last month")
+    s_spend_change = previous_secondary_total - int(S_TOTAL)
+    s_percentage_change = s_spend_change / previous_secondary_total * 100
+    s_percentage_change_two = round(s_percentage_change, 2)
+
+    print(f"This month, your change in living costs was £{s_spend_change}.\n")
+    print(f"That is a change of {s_percentage_change_two}%.\n")
+    
 
 
 def main():
     """
     Function to run all other functions.
     """
-    # income = get_income()
-    # update_budget(income, "Income")
+    income = get_income()
+    update_budget(income, "Income")
     living_costs = get_living_costs()
     update_budget(living_costs, "Living")
-    # secondary_costs = get_secondary_costs()
-    # update_budget(secondary_costs, "Secondary")
-    show_spending_change()
+    secondary_costs = get_secondary_costs()
+    update_budget(secondary_costs, "Secondary")
+    living_spending_change()
     
 
 
