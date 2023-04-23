@@ -4,13 +4,14 @@ from google.oauth2.service_account import Credentials
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
     "https://www.googleapis.com/auth/drive.file",
-    "https://www.googleapis.com/auth/drive"
-    ]
+    "https://www.googleapis.com/auth/drive",
+]
 
-CREDS = Credentials.from_service_account_file('creds.json')
+CREDS = Credentials.from_service_account_file("creds.json")
 SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
-SHEET = GSPREAD_CLIENT.open('monthly-budget')
+SHEET = GSPREAD_CLIENT.open("monthly-budget")
+
 
 def get_income():
     """
@@ -27,7 +28,6 @@ def get_income():
             print("\nData must be entered as an integer.\n")
 
     return [income]
-
 
 
 def get_cost_entry(cost_item_name):
@@ -51,6 +51,7 @@ def get_cost_entry(cost_item_name):
         else:
             return int(user_input)
 
+
 def get_living_costs():
     """
     Ask the user for their living costs and return them in a list.
@@ -59,19 +60,17 @@ def get_living_costs():
             The total is also appended to the end of the list.
     """
     COST_ITEM_NAMES = [
-        'rent',
-        'energy',
-        'groceries',
-        'council tax',
-    ] 
+        "rent",
+        "energy",
+        "groceries",
+        "council tax",
+    ]
 
     print("\nPlease enter each living cost below as an integer.\n")
 
     living_costs = []
     for cost_item_name in COST_ITEM_NAMES:
-        living_costs.append(
-            get_cost_entry(cost_item_name)
-        )
+        living_costs.append(get_cost_entry(cost_item_name))
 
     global L_TOTAL
     L_TOTAL = sum(living_costs)
@@ -79,6 +78,7 @@ def get_living_costs():
     living_costs.append(sum(living_costs))
 
     return living_costs
+
 
 def get_secondary_costs():
     """
@@ -88,18 +88,16 @@ def get_secondary_costs():
             The total is also appended to the end of the list.
     """
     COST_ITEM_NAMES = [
-        'car payments',
-        'entertainment',
-        'social costs',
-    ] 
+        "car payments",
+        "entertainment",
+        "social costs",
+    ]
 
     print("\nPlease enter each secondary cost below as an integer.\n")
 
     secondary_costs = []
     for cost_item_name in COST_ITEM_NAMES:
-        secondary_costs.append(
-            get_cost_entry(cost_item_name)
-        )
+        secondary_costs.append(get_cost_entry(cost_item_name))
 
     global S_TOTAL
     S_TOTAL = sum(secondary_costs)
@@ -109,17 +107,16 @@ def get_secondary_costs():
     return secondary_costs
 
 
-
 def calculate_spending_change():
     """
-    Retrive previous month's total, calulate spending difference 
+    Retrive previous month's total, calulate spending difference
     as a percentage.
     """
     print("\nCalulating change in spending...\n")
 
     living = SHEET.worksheet("Living").get_all_values()
     living_row = living[-2]
-    
+
     previous_living_total = int(living_row.pop(-1))
 
     l_spend_change = int(L_TOTAL) - previous_living_total
@@ -138,7 +135,8 @@ def calculate_spending_change():
     s_percentage_change = s_spend_change / previous_secondary_total * 100
     s_percentage_change_two = round(s_percentage_change, 2)
 
-    print(f"This month, your change in secondary costs was £{s_spend_change}.\n")
+    print(f"This month, your change in secondary costs\
+        was £{s_spend_change}.\n")
     print(f"This represents a change of {s_percentage_change_two}%.\n")
 
 
@@ -153,7 +151,7 @@ def calculate_leftover_income():
     income = int(income_data.pop(-1))
 
     total_spending = S_TOTAL + L_TOTAL
-    
+
     leftover_income = income - total_spending
 
     update_budget([leftover_income], "Cash")
@@ -167,10 +165,11 @@ def calculate_leftover_income():
     leftover_percentage_change = leftover_change / int(leftover) * 100
     leftover_percentage_change_two = round(leftover_percentage_change, 2)
 
-    print(f"Your leftover income, after all costs, this month is £{leftover_income}.\n")
+    print(f"Your leftover income, after all costs, this\
+        month is £{leftover_income}.\n")
     print(f"That is a change of £{leftover_change}.\n")
     print(f"This represents a change of %{leftover_percentage_change_two}.\n")
-    
+
 
 def update_budget(data, worksheet):
     """
@@ -195,7 +194,6 @@ def main():
     update_budget(secondary_costs, "Secondary")
     calculate_spending_change()
     calculate_leftover_income()
-    
 
 
 main()
