@@ -62,7 +62,7 @@ My third portfolio project uses Python code from the run.py file to read, retrie
 - Below are the config vars used:
 ![Heroku Config Vars](/documentation/config-vars.png)
 - Below are the buildpacks necessary to create the web app:
-[Heroku Buildpacks](/documentation/buildpacks.png)
+![Heroku Buildpacks](/documentation/buildpacks.png)
 
 ### Credits
 ----------------------------
