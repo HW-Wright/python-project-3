@@ -18,6 +18,11 @@ My third portfolio project uses Python code from the run.py file to read, retriv
 ----------------------------
 #### Existing Features
 ##### User Inputs
+- Eight different inputs request spending data from the user throughout the program. One for the user's income, four for various aspects of the user's living costs, and three for various apects of the user's secondary costs.
+##### Google Sheet Updating
+- The data from the user inputs are stored in the connected Google Sheet, as well as the totals for each category.
 ##### Custom Error Messages
+- If the user was to enter data the program consider's invalid (such as an input that is not an integer), the program will present custom error messages. These messages will inform the user of the error and repeat the initial input until the data is valid.
 ##### Change in Spending Data
+- The totals for the recently entered data is check against the total for the previous month's data, at which point the difference in pound sterling and percentage change is presented to the user. Thi sis done for both living costs and secondary costs. The user will also be presented a value representing the leftover income for the current month, and how this differs from last month.
 

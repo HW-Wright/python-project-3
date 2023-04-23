@@ -151,6 +151,7 @@ def living_spending_change():
 
     print(f"This month, your change in living costs was £{s_spend_change}.\n")
     print(f"That is a change of {s_percentage_change_two}%.\n")
+
     
 
 
