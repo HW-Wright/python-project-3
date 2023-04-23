@@ -123,7 +123,7 @@ def calculate_spending_change():
     l_percentage_change = l_spend_change / previous_living_total * 100
     l_percentage_change_two = round(l_percentage_change, 2)
 
-    print(f"This month, your change in living costs was £{l_spend_change}.\n")
+    print(f"Your change in living costs: £{l_spend_change}.\n")
     print(f"That is a change of {l_percentage_change_two}%.\n")
 
     secondary = SHEET.worksheet("Secondary").get_all_values()
@@ -135,8 +135,7 @@ def calculate_spending_change():
     s_percentage_change = s_spend_change / previous_secondary_total * 100
     s_percentage_change_two = round(s_percentage_change, 2)
 
-    print(f"This month, your change in secondary costs\
-        was £{s_spend_change}.\n")
+    print(f"Your change in secondary costs: £{s_spend_change}\.\n")
     print(f"This represents a change of {s_percentage_change_two}%.\n")
 
 
@@ -165,8 +164,7 @@ def calculate_leftover_income():
     leftover_percentage_change = leftover_change / int(leftover) * 100
     leftover_percentage_change_two = round(leftover_percentage_change, 2)
 
-    print(f"Your leftover income, after all costs, this\
-        month is £{leftover_income}.\n")
+    print(f"Your leftover income this month is £{leftover_income}.\n")
     print(f"That is a change of £{leftover_change}.\n")
     print(f"This represents a change of %{leftover_percentage_change_two}.\n")
 
