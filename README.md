@@ -60,9 +60,9 @@ My third portfolio project uses Python code from the run.py file to read, retrie
 - Using Heroku, the web app was deployed via GitHub.
 ![Heroku Deployment](/documentation/heroku-deployment.png)
 - Below are the config vars used:
-![Heroku Config Vars](/documentation/config-vars)
+![Heroku Config Vars](/documentation/config-vars.png)
 - Below are the buildpacks necessary to create the web app:
-[Heroku Buildpacks](/documentation/buildpacks)
+[Heroku Buildpacks](/documentation/buildpacks.png)
 
 ### Credits
 ----------------------------
