@@ -55,9 +55,7 @@ def get_cost_entry(cost_item_name):
 def get_living_costs():
     """
     Ask the user for their living costs and return them in a list.
-    Returns:
-        list of int: a list of numbers corresponding to each living cost.
-            The total is also appended to the end of the list.
+    The total is also appended to the end of the list.
     """
     COST_ITEM_NAMES = [
         "rent",
@@ -83,9 +81,7 @@ def get_living_costs():
 def get_secondary_costs():
     """
     Ask the user for their secondary costs and return them in a list.
-    Returns:
-        list of int: a list of numbers corresponding to each cost.
-            The total is also appended to the end of the list.
+    The total is also appended to the end of the list.
     """
     COST_ITEM_NAMES = [
         "car payments",
@@ -109,7 +105,7 @@ def get_secondary_costs():
 
 def calculate_spending_change():
     """
-    Retrive previous month's total, calulate spending difference
+    Retrieve previous month's total, calculate spending difference
     as a percentage.
     """
     print("\nCalulating change in spending...\n")
