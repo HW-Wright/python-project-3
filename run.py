@@ -109,19 +109,8 @@ def get_secondary_costs():
     return secondary_costs
 
 
-    
-def update_budget(data, worksheet):
-    """
-    Used to update the spreadsheet with input data
-    from user, in all cases.
-    """
-    print(f"\nUpdating {worksheet} sheet...\n")
-    updating = SHEET.worksheet(worksheet)
-    updating.append_row(data)
-    print("Updated.\n")
 
-
-def living_spending_change():
+def calculate_spending_change():
     """
     Retrive previous month's total, calulate spending difference 
     as a percentage.
@@ -133,7 +122,7 @@ def living_spending_change():
     
     previous_living_total = int(living_row.pop(-1))
 
-    l_spend_change = previous_living_total - int(L_TOTAL)
+    l_spend_change = int(L_TOTAL) - previous_living_total
     l_percentage_change = l_spend_change / previous_living_total * 100
     l_percentage_change_two = round(l_percentage_change, 2)
 
@@ -145,14 +134,53 @@ def living_spending_change():
 
     previous_secondary_total = int(secondary_row.pop(-1))
 
-    s_spend_change = previous_secondary_total - int(S_TOTAL)
+    s_spend_change = int(S_TOTAL) - previous_secondary_total
     s_percentage_change = s_spend_change / previous_secondary_total * 100
     s_percentage_change_two = round(s_percentage_change, 2)
 
-    print(f"This month, your change in living costs was £{s_spend_change}.\n")
-    print(f"That is a change of {s_percentage_change_two}%.\n")
+    print(f"This month, your change in secondary costs was £{s_spend_change}.\n")
+    print(f"This represents a change of {s_percentage_change_two}%.\n")
 
+
+def calculate_leftover_income():
+    """
+    Function to update total spending in "Cash" worksheet, and
+    present data and change in data to user.
+    """
+    cash_row = SHEET.worksheet("Cash").get_all_values()
+    income_sheet = SHEET.worksheet("Income").get_all_values()
+    income_data = income_sheet[-1]
+    income = int(income_data.pop(-1))
+
+    total_spending = S_TOTAL + L_TOTAL
     
+    leftover_income = income - total_spending
+
+    update_budget([leftover_income], "Cash")
+
+    previous_leftover = cash_row[-1]
+
+    leftover = previous_leftover.pop(-1)
+
+    leftover_change = int(leftover) - leftover_income
+
+    leftover_percentage_change = leftover_change / int(leftover) * 100
+    leftover_percentage_change_two = round(leftover_percentage_change, 2)
+
+    print(f"Your leftover income, after all costs, this month is £{leftover_income}.\n")
+    print(f"That is a change of £{leftover_change}.\n")
+    print(f"This represents a change of %{leftover_percentage_change_two}.\n")
+    
+
+def update_budget(data, worksheet):
+    """
+    Used to update the spreadsheet with input data
+    from user, in all cases.
+    """
+    print(f"\nUpdating {worksheet} sheet...\n")
+    updating = SHEET.worksheet(worksheet)
+    updating.append_row(data)
+    print("Updated.\n")
 
 
 def main():
@@ -165,7 +193,8 @@ def main():
     update_budget(living_costs, "Living")
     secondary_costs = get_secondary_costs()
     update_budget(secondary_costs, "Secondary")
-    living_spending_change()
+    calculate_spending_change()
+    calculate_leftover_income()
     
 
 
