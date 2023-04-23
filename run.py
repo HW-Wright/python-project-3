@@ -17,7 +17,7 @@ def get_income():
     """
     Get income for this month from user and ensure data is an integer.
     """
-    print("\nPlease enter an integer below:\n")
+    print("\nPlease enter an data as integers of pound sterling:\n")
     print("How much were you paid after tax this month?\n")
 
     while True:
@@ -135,7 +135,7 @@ def calculate_spending_change():
     s_percentage_change = s_spend_change / previous_secondary_total * 100
     s_percentage_change_two = round(s_percentage_change, 2)
 
-    print(f"Your change in secondary costs: £{s_spend_change}\.\n")
+    print(f"Your change in secondary costs: £{s_spend_change}.\n")
     print(f"This represents a change of {s_percentage_change_two}%.\n")
 
 

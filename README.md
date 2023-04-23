@@ -1,5 +1,5 @@
 # Python Monthly Budget
-My third portfolio project uses Python code from the run.py file to read, retrive and update data in a Google Sheet. The primary purpose of the project is to both maintain a historical record of the user's spending in various areas, and present the user with an accurate change in spending from the previous month, in the form of a percentage. The program will have obvious use for the majority of people.
+My third portfolio project uses Python code from the run.py file to read, retrieve and update data in a Google Sheet. The primary purpose of the project is to both maintain a historical record of the user's spending in various areas and present the user with an accurate change in spending from the previous month, in the form of a percentage. The program will have obvious use for the majority of people.
 
 [Please view the live project here!](https://python-project-3.herokuapp.com/)
 
@@ -16,25 +16,25 @@ My third portfolio project uses Python code from the run.py file to read, retriv
 #### Returning User Goals
 - As a returning user, I want to be able to use the program with ease and understand what data I am going to receive from it.
 #### Frequent User Goals
-- As a frequent visitor, I want to use the program to better understand my spending habbits and make any changes that I feel are necessary. 
+- As a frequent visitor, I want to use the program to better understand my spending habits and make any changes that I feel are necessary. 
 
 ### Features
 ----------------------------
 #### Existing Features
 ##### User Inputs
-- Eight different inputs request spending data from the user throughout the program. One for the user's income, four for various aspects of the user's living costs, and three for various apects of the user's secondary costs.
+- Eight different inputs request spending data from the user throughout the program. One for the user's income, four for various aspects of the user's living costs, and three for various aspects of the user's secondary costs.
 ##### Google Sheet Updating
 - The data from the user inputs are stored in the connected Google Sheet, as well as the totals for each category.
 ##### Custom Error Messages
-- If the user was to enter data the program consider's invalid (such as an input that is not an integer), the program will present custom error messages. These messages will inform the user of the error and repeat the initial input until the data is valid.
+- If the user was to enter data the program considers invalid (such as an input that is not an integer), the program will present custom error messages. These messages will inform the user of the error and repeat the initial input until the data is valid.
 ##### Change in Spending Data
-- The totals for the recently entered data is check against the total for the previous month's data, at which point the difference in pound sterling and percentage change is presented to the user. Thi sis done for both living costs and secondary costs. The user will also be presented a value representing the leftover income for the current month, and how this differs from last month.
+- The totals for the recently entered data is check against the total for the previous month's data, at which point the difference in pound sterling and percentage change is presented to the user. This is done for both living costs and secondary costs. The user will also be presented a value representing the leftover income for the current month, and how this differs from last month.
 #### Features to be Added
-- In the future I would like to add a feature whereby users can edit previous entires within the program. This would be a useful feature for combating human error.
+- In the future I would like to add a feature whereby users can edit previous entries within the program. This would be a useful feature for combating human error.
 
 ### Testing
 ----------------------------
-- The app has been tested rigerously in the gitpod terminal, and in it's deployed form on Heroku.
+- The app has been tested rigorously in the gitpod terminal, and in it's deployed form on Heroku.
 ![Testing in terminal](/documentation/testing-1.png)
 ![Testing in terminal](/documentation/testing-2.png)
 ![Testing in terminal](/documentation/testing-3.png)
@@ -57,14 +57,14 @@ My third portfolio project uses Python code from the run.py file to read, retriv
 
 ### Deployment
 ----------------------------
-- Using Heroku, the webb app was deployed via GitHub.
+- Using Heroku, the web app was deployed via GitHub.
 ![Heroku Deployment](/documentation/heroku-deployment.png)
 - Below are the config vars used:
 ![Heroku Config Vars](/documentation/config-vars)
-- Below are the buildpacks necessary to create the webb app:
+- Below are the buildpacks necessary to create the web app:
 [Heroku Buildpacks](/documentation/buildpacks)
 
 ### Credits
 ----------------------------
 - Update_budget function: The basic code structure is borrowed from the Love Sandwiches walkthrough project.
-- I would like to acknowledge Brian Macharia, my Code Institue mentor. The student support systems at Code Institute.
+- I would like to acknowledge Brian Macharia, my Code Institute mentor. The student support systems at Code Institute.
