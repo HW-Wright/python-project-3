@@ -39,7 +39,7 @@ My third portfolio project uses Python code from the run.py file to read, retrie
 ![Testing in terminal](/documentation/testing-2.png)
 ![Testing in terminal](/documentation/testing-3.png)
 ![Testing criteria](/documentation/testing-4.png)
-### UX
+### UI
 ----------------------------
 - It was important to the project, that the limited control I had over the design of the deployed app, was made to be as clean and polished as possible. As a result, the inputs and print statements that make up the UX of the app are all evenly separated, with the living cost group and the secondary cost group of inputs remaining together.
 
